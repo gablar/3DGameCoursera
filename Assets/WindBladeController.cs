@@ -24,6 +24,6 @@ public class WindBladeController : MonoBehaviour {
 
     public void ForgeActivada() {
         Debug.Log("Windmill Activated");
-        rgb.AddTorque(500, 0, 0);
+        rgb.AddTorque(100, 0, 0);
     }
 }

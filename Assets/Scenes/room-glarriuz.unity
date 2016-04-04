@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timber: {fileID: 5455174, guid: fc9035f66f7342b41aef24322ea25062, type: 2}
   speed: 17
-  launchTime: 1
+  launchTime: 5
   activate: 1
 --- !u!4 &217862414 stripped
 Transform:
@@ -7401,7 +7401,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412000, guid: 210169a41db964d7ab4096b98c890134, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129009553}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9300,7 +9300,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
