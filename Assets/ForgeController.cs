@@ -6,8 +6,6 @@ public class ForgeController : MonoBehaviour {
     public static event ForgeActivada OnForgeActivada;
     // Use this for initialization
 
-   
-    float t;
 	void Start () {
 	
 	}
@@ -18,7 +16,7 @@ public class ForgeController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Log") {
-            Debug.Log("Log collided with Forge");
+            //Debug.Log("Log collided with Forge");
             if (OnForgeActivada != null) {
                 OnForgeActivada();
             }
