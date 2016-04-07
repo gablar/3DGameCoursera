@@ -552,6 +552,21 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bc1ba16a8863413083b04a7651b2341, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &105155506 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+  m_PrefabInternal: {fileID: 1891497649}
+--- !u!114 &105155512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 105155506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc29121d7394c1f4da5a778358779ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &115476568
 GameObject:
   m_ObjectHideFlags: 0
@@ -9249,6 +9264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c680ab844a3b468964c99f5ea21ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRotSpeed: 2
 --- !u!54 &1528204474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10882,7 +10898,7 @@ MonoBehaviour:
   nombrePersonaje: Pito
   empezarTiempo: 0
   tiempo: 5
-  yaHuboEarthquake: 1
+  yaHuboEarthquake: 0
   tiempoEarthquake: 180
   pitch: 1
   pitchDuringEarthquake: 0.5
@@ -11000,15 +11016,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.000000029802326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.000000029802326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.000000014901163
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: m_LocalRotation.w
@@ -11036,7 +11052,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: multiplier
-      value: 25.02
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: minDuration
@@ -11060,7 +11076,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: EmissionModule.rate.scalar
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: ShapeModule.radius
@@ -11068,7 +11084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: InitialModule.maxNumParticles
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: playOnAwake
@@ -11077,6 +11093,30 @@ Prefab:
     - target: {fileID: 11400000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.startLifetime.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.startLifetime.maxCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.startLifetime.minCurve.m_Curve.Array.data[0].value
+      value: 0.22222222
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.startLifetime.minCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: -0.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32aafb358d61bd14b9b27ed0871fe43b, type: 2}
@@ -13073,7 +13113,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: da12e82f48e237747b2f824da5069ae2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.37
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: da12e82f48e237747b2f824da5069ae2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13081,7 +13121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: da12e82f48e237747b2f824da5069ae2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -7.7499995
+      value: -7.75
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: da12e82f48e237747b2f824da5069ae2, type: 2}
       propertyPath: m_LocalRotation.x
