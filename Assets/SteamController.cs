@@ -4,11 +4,12 @@ using System;
 
 public class SteamController : MonoBehaviour {
     private bool steamActivado = false;
+    ParticleSystem particles;
 
 
     // Use this for initialization
     void Start () {
-	
+        particles = GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -20,13 +21,19 @@ public class SteamController : MonoBehaviour {
     {
         WindBladeController.OnWindmillActivado += WindmillActivado;
         WindBladeController.OnWindmillDesactivado += WindmillDesactivado;
+        OllaController.OnOllaActivada += OllaActivada;
+        OllaController.OnOllaDesactivado += OllaDesactivado;
 
     }
+
+    
 
     void OnDisable()
     {
         WindBladeController.OnWindmillActivado -= WindmillActivado;
         WindBladeController.OnWindmillDesactivado -= WindmillDesactivado;
+        OllaController.OnOllaActivada -= OllaActivada;
+        OllaController.OnOllaDesactivado -= OllaDesactivado;
 
     }
 
@@ -47,5 +54,16 @@ public class SteamController : MonoBehaviour {
         }
     }
 
+    private void OllaActivada()
+    {
+        particles.Play();
+    }
+
+    private void OllaDesactivado()
+    {
+        particles.Stop();
+    }
+
+   
 
 }
