@@ -6,16 +6,20 @@ public class SteamController : MonoBehaviour {
     private bool steamActivado = false;
     ParticleSystem particles;
 
+    //events
+
+    public delegate void SteamRedirigido();
+    public static event SteamRedirigido OnSteamRedirigido;
+
+    public delegate void SteamNoRedirigido();
+    public static event SteamNoRedirigido OnSteamNoRedirigido;
+
 
     // Use this for initialization
     void Start () {
         particles = GetComponent<ParticleSystem>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
     void OnEnable()
     {
@@ -42,6 +46,10 @@ public class SteamController : MonoBehaviour {
         if (steamActivado) {
             gameObject.transform.Rotate(-90, 0, 0);
             steamActivado = false;
+            if (OnSteamNoRedirigido != null)
+            {
+                OnSteamNoRedirigido();
+            }
         }
     }
 
@@ -51,6 +59,10 @@ public class SteamController : MonoBehaviour {
         {
             gameObject.transform.Rotate(90,0,0);
             steamActivado = true;
+            if (OnSteamRedirigido != null)
+            {
+                OnSteamRedirigido();
+            }
         }
     }
 
