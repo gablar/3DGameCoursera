@@ -6,6 +6,12 @@ public class CloudController : MonoBehaviour {
     public float delay;
     ParticleSystem ps;
 
+    public delegate void RainStarted();
+    public static event RainStarted OnRainStarted;
+
+    public delegate void RainStopped();
+    public static event RainStopped OnRainStopped;
+
     // Use this for initialization
     void Start () {
         ps = GetComponent<ParticleSystem>();
@@ -28,6 +34,10 @@ public class CloudController : MonoBehaviour {
     {
         ps.Stop();
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        if (OnRainStopped != null)
+        {
+            OnRainStopped();
+        }
     }
 
     private void SteamRedirigido()
@@ -43,6 +53,10 @@ public class CloudController : MonoBehaviour {
 
     void StartRain() {
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        if (OnRainStarted != null)
+        {
+            OnRainStarted();
+        }
 
     }
 }
