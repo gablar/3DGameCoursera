@@ -2,20 +2,33 @@
 using System.Collections;
 using System;
 
-public class TreeController : MonoBehaviour {
-
+public class TreeController : MonoBehaviour
+{
+    public ParticleSystem thunder;
+    Rigidbody rgb;
     Animator anim;
 
-	// Use this for initialization
-	void Start () {
+
+    public bool broken;
+    // Use this for initialization
+    void Start()
+    {
         anim = GetComponent<Animator>();
+        
+        rgb = GetComponent<Rigidbody>();
         anim.speed = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GrownTree") && broken)
+        {
+            thunder.Play();
+            rgb.AddTorque(-transform.forward * 30);
+            broken = false;
+        }
+    }
 
     void OnEnable()
     {
@@ -41,5 +54,16 @@ public class TreeController : MonoBehaviour {
     private void RainStarted()
     {
         anim.speed = 1;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        //Debug.Log("Collision Name:" + other.transform.name);
+        /*if (other.gameObject.tag == "Cart")
+        {
+            Debug.Log("Collision Tag: Cart ");
+            gameObject.transform.SetParent(other.transform);
+
+        }*/
     }
 }
