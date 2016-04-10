@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Forge
   - Log
-  - Fire
-  - Cart
   layers:
   - Default
   - TransparentFX
