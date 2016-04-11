@@ -4,29 +4,50 @@ using System;
 
 public class TreeController : MonoBehaviour
 {
-    public ParticleSystem thunder;
+     
+    public bool raining;
+    public float speed;
+
+    public Vector3 direction;
+    bool broken = false;
+
     Rigidbody rgb;
     Animator anim;
 
+    public delegate void TreeGrown();
+    public static event TreeGrown OnTreeGrown;
 
-    public bool broken;
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         
         rgb = GetComponent<Rigidbody>();
-        anim.speed = 0;
+
+
+       
+        if (raining)
+        {
+            RainStarted();
+        }
+        else {
+            RainStopped();
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GrownTree") && broken)
+    {   
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GrownTree") && !broken)
         {
-            thunder.Play();
-            rgb.AddTorque(-transform.forward * 30);
-            broken = false;
+            if (OnTreeGrown != null) {
+                OnTreeGrown();
+            }
+            
+            broken = true;
+            Invoke("LaunchTree", 0.1f);
         }
     }
 
@@ -56,6 +77,9 @@ public class TreeController : MonoBehaviour
         anim.speed = 1;
     }
 
+    void LaunchTree() {
+        rgb.AddForce(direction * speed);
+    }
     void OnCollisionEnter(Collision other)
     {
         //Debug.Log("Collision Name:" + other.transform.name);
