@@ -111,7 +111,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   preloadShaders: 0
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -464,7 +464,7 @@ PlayerSettings:
   WebGL::emscriptenArgs: 
   WebGL::template: APPLICATION:Default
   additionalIl2CppArgs::additionalIl2CppArgs: 
-  cloudProjectId: 2f84f4a3-e25c-4984-9543-8cbeb3e708d9
+  cloudProjectId: b6806033-7835-423e-8db4-e927a142254d
   projectName: 3DGameCoursera
-  organizationId: pfiguero
+  organizationId: gablar
   cloudEnabled: 0
