@@ -6,7 +6,7 @@ public class MillController : MonoBehaviour {
     public float rotation= 25.0f;
     public float flyspeed = 50;
     public bool millActivated = false;
-    public bool resetBlade;
+    public bool resetBlade = false;
     public float min;
     public float max;
 
@@ -18,18 +18,12 @@ public class MillController : MonoBehaviour {
     Quaternion bladeRotation;
     Vector3 flyDirection;
 
-    private GameManager gameManager = null;
     
 
     void Start() {
         rgb = GetComponent<Rigidbody>();
         bladePosition = transform.position;
         bladeRotation = transform.rotation;
-        GameObject g = GameObject.Find("GameManager");
-        if (g != null)
-        {
-            gameManager = g.GetComponent<GameManager>();
-        }
     }
     void Update()
     {   if (resetBlade) {
@@ -40,13 +34,6 @@ public class MillController : MonoBehaviour {
         {
             ActivateMill();
             //transform.Rotate(0, 0, speed);
-        }
-       if (gameManager.yaHuboEarthquake && millActivated) {
-            millActivated = false;
-            rgb.constraints = RigidbodyConstraints.None;
-            CalculateFlight();
-            rgb.AddForce(flyDirection);
-
         }
     }
     
@@ -76,5 +63,15 @@ public class MillController : MonoBehaviour {
         rgb.constraints = RigidbodyConstraints.FreezePosition |
                             RigidbodyConstraints.FreezeRotationX | 
                             RigidbodyConstraints.FreezeRotationY;
+    }
+
+
+    public void EarthquakeEvent() {
+        if (millActivated) { 
+            millActivated = false;
+            rgb.constraints = RigidbodyConstraints.None;
+            CalculateFlight();
+            rgb.AddForce(flyDirection);
+        }
     }
 }
