@@ -3,7 +3,6 @@ using System.Collections;
 
 public class OllaController : MonoBehaviour {
     public bool ollaEnPosicion = true;
-    public bool OcurrioTerremoto = false;
     public bool resetPosition;
     public float force;
 
@@ -35,25 +34,26 @@ public class OllaController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {   
-        if (OcurrioTerremoto) {
-
-            rgb.constraints = RigidbodyConstraints.None;
-            rgb.AddForce(-transform.right*force);
-            OcurrioTerremoto = false;
-            ollaEnPosicion = false;
-        }
 
         if (resetPosition) {
             transform.position = posicionOlla;
             transform.rotation = rotacionOlla;
             rgb.constraints = RigidbodyConstraints.FreezeAll;
             ollaEnPosicion = true;
+            EventoOllaEnPosicion();
         }
-        EventoOllaEnPosicion();
+        
 
 
     }
 
+    private void EarthquakeEvent()
+    {
+        rgb.constraints = RigidbodyConstraints.None;
+        rgb.AddForce(-transform.right * force);
+        ollaEnPosicion = false;
+        EventoOllaEnPosicion();
+    }
 
     private void EventoOllaEnPosicion()
     {
@@ -70,5 +70,16 @@ public class OllaController : MonoBehaviour {
                 OnOllaDesactivado();
             }
         }
+    }
+
+    void OnEnable()
+    {
+        TerrainController.OnEarthquake += EarthquakeEvent;
+    }
+
+
+    void OnDisable()
+    {
+        TerrainController.OnEarthquake -= EarthquakeEvent;
     }
 }

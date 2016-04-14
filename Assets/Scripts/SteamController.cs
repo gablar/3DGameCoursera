@@ -4,6 +4,7 @@ using System;
 
 public class SteamController : MonoBehaviour {
     private bool steamActivado = false;
+    bool ollaEnPosicion = true;
     ParticleSystem particles;
 
     //events
@@ -55,11 +56,11 @@ public class SteamController : MonoBehaviour {
 
     public void WindmillActivado() {
         //Debug.Log("Steam detected windmill activation");
-        if (!steamActivado)
+        if (!steamActivado )
         {
             gameObject.transform.Rotate(90,0,0);
             steamActivado = true;
-            if (OnSteamRedirigido != null)
+            if (OnSteamRedirigido != null && ollaEnPosicion)
             {
                 OnSteamRedirigido();
             }
@@ -69,11 +70,13 @@ public class SteamController : MonoBehaviour {
     private void OllaActivada()
     {
         particles.Play();
+        ollaEnPosicion = true;
     }
 
     private void OllaDesactivado()
     {
         particles.Stop();
+        ollaEnPosicion = false;
     }
 
    

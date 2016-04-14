@@ -8,7 +8,6 @@ public class PlankController : MonoBehaviour {
     public float min;
     public float max;
     private Vector3 flyDirection;
-    private GameManager gameManager = null;
     public bool isBroken = false;
     public bool montar = false;
     Rigidbody rgb;
@@ -18,28 +17,29 @@ public class PlankController : MonoBehaviour {
         initialRotation = gameObject.transform.rotation;
 
         rgb = GetComponent<Rigidbody>();
-        GameObject g = GameObject.Find("GameManager");
-        if (g != null)
-        {
-            gameManager = g.GetComponent<GameManager>();
-        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameManager.yaHuboEarthquake && !isBroken) {
-            isBroken = true;
-            CalculateFlight();
-            rgb.AddForce(flyDirection);
-            Debug.Log("force added to log");
-        }
 
         if (montar) {
             gameObject.transform.position = initialPosition;
             gameObject.transform.rotation = initialRotation;
             montar = false;
+            isBroken = false;
         }
 	}
+
+    private void EarthquakeEvent(){
+        if (!isBroken) {
+            isBroken = true;
+            CalculateFlight();
+            rgb.AddForce(flyDirection);
+        }
+        
+    }
+        
+    
 
     void CalculateFlight()
     {
@@ -56,5 +56,16 @@ public class PlankController : MonoBehaviour {
         }
         float y = Random.Range(5 * min, 5 * max);
         flyDirection = new Vector3(x, y, z);
+    }
+
+    void OnEnable()
+    {
+        TerrainController.OnEarthquake += EarthquakeEvent;
+    }
+
+
+    void OnDisable()
+    {
+        TerrainController.OnEarthquake -= EarthquakeEvent;
     }
 }

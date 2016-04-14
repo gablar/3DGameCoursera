@@ -34,20 +34,26 @@ public class TerrainController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.name.Equals ("TheCandle") && OnEarthquake != null ) {
 			OnEarthquake ();
+            Debug.Log("Candle trigger detected");
 		}
 	}
 
 	void EarthquakeEvent() {
-		if (source != null)
-			source.Play ();
-		if (anim != null)
-			anim.SetTrigger ("earthquake");
-		Invoke ("LlamarEarthquake", 30);
+        if (source != null)
+            source.Play();
+        if (anim != null)
+            anim.SetTrigger("earthquake");
+       
+        Invoke ("LlamarEarthquake", 180);
 	}
 
 	void LlamarEarthquake() {
-		if (OnEarthquake != null ) {
-			OnEarthquake ();
-		}
-	}
+        EarthquakeEvent();
+        if (OnEarthquake != null)
+        {
+            OnEarthquake();
+            Debug.Log("Earthquake Triggered");
+        }
+
+    }
 }

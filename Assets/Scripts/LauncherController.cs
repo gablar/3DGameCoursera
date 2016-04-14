@@ -5,7 +5,7 @@ public class LauncherController : MonoBehaviour {
     public Rigidbody timber;
     public float speed;
     public float launchTime;
-    public bool activate = true;
+    public bool activate = false;
     bool isActivated = false;
 
 	// Use this for initialization

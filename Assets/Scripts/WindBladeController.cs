@@ -41,6 +41,7 @@ public class WindBladeController : MonoBehaviour {
 
     void OnEnable() {
         ForgeController.OnForgeActivada += ForgeActivada;
+
     }
 
     void OnDisable()
