@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ForgeController : MonoBehaviour {
-    public delegate void ForgeActivada();
-    public static event ForgeActivada OnForgeActivada;
-    // Use this for initialization
+public class FireWoodController : MonoBehaviour {
 
+	// Use this for initialization
 	void Start () {
         rend = GetComponent<Renderer>();
         origColor = rend.material.color;
@@ -13,19 +11,11 @@ public class ForgeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
 	}
 
-    void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Log") {
-            //Debug.Log("Log collided with Forge");
-            if (OnForgeActivada != null) {
-                OnForgeActivada();
-            }
-        }
-    }
 
     //selection
-
     Renderer rend;
     public bool selected;
     private Color startcolor;

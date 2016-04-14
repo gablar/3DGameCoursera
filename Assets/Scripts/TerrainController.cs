@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TerrainController : MonoBehaviour {
-
+    public float eartquakeTime;
 	private Animator anim;
 	private AudioSource source;
 
@@ -44,7 +44,7 @@ public class TerrainController : MonoBehaviour {
         if (anim != null)
             anim.SetTrigger("earthquake");
        
-        Invoke ("LlamarEarthquake", 180);
+        Invoke ("LlamarEarthquake", eartquakeTime);
 	}
 
 	void LlamarEarthquake() {

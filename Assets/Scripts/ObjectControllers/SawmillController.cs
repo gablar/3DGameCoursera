@@ -35,10 +35,11 @@ public class SawmillController : MonoBehaviour {
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Tree")) {
             Destroy(other.gameObject, 1);
+            launcher.activate = true;
+            t = 0;
         }
 
-        launcher.activate = true;
-        t = 0;
+
     }
 
     void OnEnable()
@@ -55,7 +56,6 @@ public class SawmillController : MonoBehaviour {
     private void EarthquakeEvent()
     {
 
-        mill.EarthquakeEvent();
         launcher.activate = false;
 
     }

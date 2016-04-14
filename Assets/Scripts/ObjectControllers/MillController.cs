@@ -5,8 +5,8 @@ public class MillController : MonoBehaviour {
 
     public float rotation= 25.0f;
     public float flyspeed = 50;
-    public bool millActivated = false;
-    public bool resetBlade = false;
+    bool millActivated = false;
+    bool resetBlade = true;
     public float min;
     public float max;
 
@@ -60,15 +60,17 @@ public class MillController : MonoBehaviour {
     public void ResetBlade() {
         transform.position = bladePosition;
         transform.rotation = bladeRotation;
-        resetBlade = false;
+        resetBlade = true;
         rgb.constraints = RigidbodyConstraints.FreezePosition |
                             RigidbodyConstraints.FreezeRotationX | 
                             RigidbodyConstraints.FreezeRotationY;
     }
 
 
-    public void EarthquakeEvent() {
-        if (millActivated) { 
+    private void EarthquakeEvent() {
+        Debug.Log("earthquake registered");
+        if (resetBlade) {
+            resetBlade = false;
             millActivated = false;
             rgb.constraints = RigidbodyConstraints.None;
             CalculateFlight();
@@ -76,6 +78,20 @@ public class MillController : MonoBehaviour {
         }
     }
 
+    void OnEnable()
+    {
+        TerrainController.OnEarthquake += EarthquakeEvent;
+    }
+
+
+    void OnDisable()
+    {
+        TerrainController.OnEarthquake -= EarthquakeEvent;
+    }
+
+
+
+    //selection
     Renderer rend;
     public bool selected;
     private Color startcolor;
