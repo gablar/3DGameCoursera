@@ -24,12 +24,13 @@ public class MillController : MonoBehaviour {
         rgb = GetComponent<Rigidbody>();
         bladePosition = transform.position;
         bladeRotation = transform.rotation;
+        
+        //selection 
+        rend = GetComponent<Renderer>();
+        origColor = rend.material.color;
     }
     void Update()
-    {   if (resetBlade) {
-            ResetBlade();
-        }
-
+    {  
         if (millActivated)
         {
             ActivateMill();
@@ -56,7 +57,7 @@ public class MillController : MonoBehaviour {
         flyDirection = new Vector3(x,y,z);
     }
 
-    void ResetBlade() {
+    public void ResetBlade() {
         transform.position = bladePosition;
         transform.rotation = bladeRotation;
         resetBlade = false;
@@ -73,5 +74,44 @@ public class MillController : MonoBehaviour {
             CalculateFlight();
             rgb.AddForce(flyDirection);
         }
+    }
+
+    Renderer rend;
+    public bool selected;
+    private Color startcolor;
+    private Color origColor;
+    void OnMouseEnter()
+    {
+        startcolor = rend.material.color;
+        rend.material.color = Color.yellow;
+    }
+    void OnMouseExit()
+    {
+        rend.material.color = startcolor;
+    }
+
+    void OnMouseDown()
+    {
+        if (selected)
+        {
+            Deselect();
+        }
+        else {
+            Select();
+        }
+    }
+
+     public void Deselect()
+    {
+        rend.material.color = origColor;
+        startcolor = origColor;
+        selected = false;
+    }
+
+    public void Select()
+    {
+        rend.material.color = Color.blue;
+        startcolor = Color.blue;
+        selected = true;
     }
 }
