@@ -4,6 +4,7 @@ using System.Collections;
 public class WindBladeController : MonoBehaviour {
     Rigidbody rgb;
     public float maxRotSpeed;
+    AudioSource windmillSound;
 
     public delegate void WindmillActivado();
     public static event WindmillActivado OnWindmillActivado;
@@ -15,6 +16,7 @@ public class WindBladeController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rgb = GetComponent<Rigidbody>();
+        windmillSound = GetComponent<AudioSource>();
 	}
 
     void Update() {
@@ -25,12 +27,18 @@ public class WindBladeController : MonoBehaviour {
             {
                 OnWindmillActivado();
             }
+            if (!windmillSound.isPlaying)
+            {
+                windmillSound.Play();
+            }
         }
         else {
             if (OnWindmillDesactivado != null)
             {
                 OnWindmillDesactivado();
             }
+
+            windmillSound.Stop();
         }
         
     }

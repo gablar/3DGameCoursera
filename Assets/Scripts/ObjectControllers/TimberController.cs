@@ -3,9 +3,10 @@ using System.Collections;
 
 public class TimberController : MonoBehaviour {
     public float selfDestructTime;
-    
+    AudioSource thud;
 	// Use this for initialization
 	void Start () {
+        thud = GetComponent<AudioSource>();
         Destroy(gameObject, selfDestructTime);
 	}
 
@@ -17,5 +18,6 @@ public class TimberController : MonoBehaviour {
             transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject,0.5f);
         }
+        thud.Play();
     }
 }
