@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MillController : MonoBehaviour {
 
     public float rotation= 25.0f;
     public float flyspeed = 50;
-    bool millActivated = false;
     bool resetBlade = true;
     public float min;
     public float max;
+    AudioSource sawSound;
 
 
 
@@ -24,36 +25,43 @@ public class MillController : MonoBehaviour {
         rgb = GetComponent<Rigidbody>();
         bladePosition = transform.position;
         bladeRotation = transform.rotation;
+        sawSound = GetComponent<AudioSource>();
         
         //selection 
         rend = GetComponent<Renderer>();
         origColor = rend.material.color;
     }
     void Update()
-    {  
-        if (millActivated)
-        {
-            ActivateMill();
-            //transform.Rotate(0, 0, speed);
-        }
+    {
+      
     }
-    
-    void ActivateMill() {
-        rgb.AddTorque(new Vector3(0, 0, rotation));
+
+    public void DeactivateMill()
+    {
+        rgb.angularVelocity = new Vector3(0,0,0);
+        sawSound.Stop();
+    }
+
+    public void ActivateMill() {
+        if (resetBlade) {
+            rgb.angularVelocity = new Vector3(0, 0, rotation);
+            //rgb.AddTorque(new Vector3(0, 0, rotation));
+            sawSound.Play();
+        }
     }
 
     void CalculateFlight() {
-        float x = Random.Range(min,max);
-        if (Random.value >= 0.5f) {
+        float x = UnityEngine.Random.Range(min,max);
+        if (UnityEngine.Random.value >= 0.5f) {
             x *= -1;
         }
 
-        float z = Random.Range(min, max);
-        if (Random.value >= 0.5f)
+        float z = UnityEngine.Random.Range(min, max);
+        if (UnityEngine.Random.value >= 0.5f)
         {
             z *= -1;
         }
-        float y = Random.Range(5*min, 5*max);
+        float y = UnityEngine.Random.Range(5*min, 5*max);
         flyDirection = new Vector3(x,y,z);
     }
 
@@ -71,7 +79,7 @@ public class MillController : MonoBehaviour {
         Debug.Log("earthquake registered");
         if (resetBlade) {
             resetBlade = false;
-            millActivated = false;
+            DeactivateMill();
             rgb.constraints = RigidbodyConstraints.None;
             CalculateFlight();
             rgb.AddForce(flyDirection);
@@ -101,6 +109,7 @@ public class MillController : MonoBehaviour {
         startcolor = rend.material.color;
         rend.material.color = Color.yellow;
     }
+
     void OnMouseExit()
     {
         rend.material.color = startcolor;
@@ -117,7 +126,7 @@ public class MillController : MonoBehaviour {
         }
     }
 
-     public void Deselect()
+    public void Deselect()
     {
         rend.material.color = origColor;
         startcolor = origColor;

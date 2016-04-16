@@ -69,7 +69,10 @@ public class TreeController : MonoBehaviour
 
     private void RainStopped()
     {
-        anim.speed = 0;
+        if(anim != null){
+            anim.speed = 0;
+
+        }
     }
 
     private void RainStarted()

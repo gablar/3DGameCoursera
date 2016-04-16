@@ -21,7 +21,9 @@ public class SawmillController : MonoBehaviour {
 	void Update () {
         t += Time.deltaTime;
         if (t > treeTimer) {
+            mill.DeactivateMill();
             launcher.activate = false;
+
             t = 0;
         }
 
@@ -36,6 +38,8 @@ public class SawmillController : MonoBehaviour {
         if (other.gameObject.CompareTag("Tree")) {
             Destroy(other.gameObject, 1);
             launcher.activate = true;
+            mill.ActivateMill();
+
             t = 0;
         }
 
