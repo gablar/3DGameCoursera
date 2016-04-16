@@ -5,8 +5,9 @@ using System;
 public class CloudController : MonoBehaviour {
     public float delay;
     ParticleSystem ps;
-    ParticleSystem thunder;
+    Transform thunder;
     Animator treeAnim;
+    AudioSource thunderSound;
 
     public delegate void RainStarted();
     public static event RainStarted OnRainStarted;
@@ -19,8 +20,7 @@ public class CloudController : MonoBehaviour {
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
 
-        thunder = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
-        thunder.Stop();
+        thunder = gameObject.transform.GetChild(1);
 	}
 
     void Update() {
@@ -43,12 +43,7 @@ public class CloudController : MonoBehaviour {
 
     private void SteamNoRedirigido()
     {
-        ps.Stop();
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        if (OnRainStopped != null)
-        {
-            OnRainStopped();
-        }
+        StopCloudSystem(); 
     }
 
     private void SteamRedirigido()
@@ -59,9 +54,14 @@ public class CloudController : MonoBehaviour {
     }
 
     void TreeGrown() {
-        thunder.Play();
-    } 
+        thunder.gameObject.SetActive(true);
+        Invoke("DisableThunder",1);
+    }
 
+    void DisableThunder() {
+        thunder.gameObject.SetActive(false);
+
+    }
     void StartCloud() {
         ps.Play();
     }
@@ -73,5 +73,15 @@ public class CloudController : MonoBehaviour {
             OnRainStarted();
         }
 
+    }
+
+    void StopCloudSystem() {
+        ps.Stop();
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
+        if (OnRainStopped != null)
+        {
+            OnRainStopped();
+        }
     }
 }
