@@ -221,7 +221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9680fdee2d8014d93863eb27387ae851, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9680fdee2d8014d93863eb27387ae851, type: 2}
@@ -1127,7 +1127,6 @@ MonoBehaviour:
   timber: {fileID: 5455174, guid: fc9035f66f7342b41aef24322ea25062, type: 2}
   speed: 17
   launchTime: 1.5
-  activate: 0
 --- !u!4 &217862414 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: ba554c772410f934284d8ded98ae9329, type: 3}
@@ -1224,35 +1223,45 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 10
-  MaxDistance: 45
+  MaxDistance: 25
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: 0.22222222
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.5017996
+      outSlope: -4.5017996
+      tangentMode: 0
+    - time: 0.44444445
+      value: 0.5
+      inSlope: -1.1254499
+      outSlope: -1.1254499
+      tangentMode: 0
+    - time: 0.85261947
+      value: 0.15069444
+      inSlope: -0.28136247
+      outSlope: -0.28136247
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.0006944388
+      inSlope: -0.2223108
+      outSlope: -0.2223108
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1274,7 +1283,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4134,7 +4143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73862abada17b4c7b94176f60f12d650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eartquakeTime: 30
+  eartquakeTime: 60
 --- !u!154 &876364588
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -5335,7 +5344,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -7688,15 +7697,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.5999656
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.21996
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.3799888
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7724,11 +7733,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.9
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.7
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7748,7 +7757,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1500000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_Ellipsoid.x
@@ -7768,11 +7777,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -7.8
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -8.11
+      value: -0.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af5d2d14895eaed4dae91d06b8ca164f, type: 2}

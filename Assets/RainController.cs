@@ -3,19 +3,22 @@ using System.Collections;
 
 public class RainController : MonoBehaviour {
     AudioSource rainSound;
+    
     // Use this for initialization
 
-    void OnAwake() {
+    void Awake() {
+       
         rainSound = GetComponent<AudioSource>();
         rainSound.Stop();
+        gameObject.SetActive(false);
     }
 
     void OnEnable() {
-        rainSound.Play();
+       // rainSound.Play();
     }
 
     void OnDisable() {
-        rainSound.Stop();
+        //rainSound.Stop();
     }
 	void Start () {
 	
@@ -23,6 +26,9 @@ public class RainController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (!rainSound.isPlaying) {
+
+            rainSound.Play();
+        }
 	}
 }

@@ -7,25 +7,18 @@ public class LightningController : MonoBehaviour {
     ParticleSystem thunderParticle;
     // Use this for initialization
 
-    void OnAwake()
+    void Awake()
     {
         thunderSound = GetComponent<AudioSource>();
         thunderSound.Stop();
         thunderParticle = GetComponent<ParticleSystem>();
         thunderParticle.Stop();
-        gameObject.SetActive(false);
     }
 
-    void OnEnable()
-    {
+
+    public void PlayThunder() {
         thunderSound.Play();
         thunderParticle.Play();
-
-    }
-
-    void OnDisable()
-    {
-        thunderSound.Stop();
     }
 
 }

@@ -77,6 +77,10 @@ public class SteamController : MonoBehaviour {
     {
         particles.Stop();
         ollaEnPosicion = false;
+        if (OnSteamNoRedirigido != null)
+        {
+            OnSteamNoRedirigido();
+        }
     }
 
    
