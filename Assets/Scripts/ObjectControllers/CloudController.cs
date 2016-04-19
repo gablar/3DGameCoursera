@@ -5,8 +5,10 @@ using System;
 public class CloudController : MonoBehaviour {
     public float delay;
     ParticleSystem ps;
-    ParticleSystem thunder;
+    LightningController thunder;
     Animator treeAnim;
+    AudioSource thunderSound;
+    bool isRedirected  = false;
 
     public delegate void RainStarted();
     public static event RainStarted OnRainStarted;
@@ -19,8 +21,7 @@ public class CloudController : MonoBehaviour {
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
 
-        thunder = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
-        thunder.Stop();
+        thunder = gameObject.transform.GetChild(1).GetComponent<LightningController>();
 	}
 
     void Update() {
@@ -43,35 +44,47 @@ public class CloudController : MonoBehaviour {
 
     private void SteamNoRedirigido()
     {
-        ps.Stop();
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        if (OnRainStopped != null)
-        {
-            OnRainStopped();
-        }
+        isRedirected = false;
+        StopCloudSystem(); 
     }
 
     private void SteamRedirigido()
     {
+        isRedirected = true;
         //Debug.Log("Steam Redirigido detectado");
         Invoke("StartCloud",delay);
         Invoke("StartRain",delay+2);
     }
 
     void TreeGrown() {
-        thunder.Play();
-    } 
+        thunder.PlayThunder();
+    }
 
     void StartCloud() {
-        ps.Play();
+        if (isRedirected)
+            ps.Play(false);
     }
 
     void StartRain() {
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        if (OnRainStarted != null)
+        if (isRedirected)
         {
-            OnRainStarted();
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            if (OnRainStarted != null)
+            {
+                OnRainStarted();
+            }
         }
 
+    }
+
+    void StopCloudSystem() {
+        ps.Stop(false);
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        CancelInvoke();
+
+        if (OnRainStopped != null)
+        {
+            OnRainStopped();
+        }
     }
 }

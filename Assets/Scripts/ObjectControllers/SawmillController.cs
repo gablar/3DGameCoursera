@@ -22,7 +22,7 @@ public class SawmillController : MonoBehaviour {
         t += Time.deltaTime;
         if (t > treeTimer) {
             mill.DeactivateMill();
-            launcher.activate = false;
+            launcher.Deactivate();
 
             t = 0;
         }
@@ -37,12 +37,19 @@ public class SawmillController : MonoBehaviour {
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Tree")) {
             Destroy(other.gameObject, 1);
-            launcher.activate = true;
+            launcher.Activate();
             mill.ActivateMill();
 
             t = 0;
         }
 
+
+    }
+
+    private void EarthquakeEvent()
+    {
+
+        launcher.Deactivate();
 
     }
 
@@ -57,12 +64,6 @@ public class SawmillController : MonoBehaviour {
         TerrainController.OnEarthquake -= EarthquakeEvent;
     }
 
-    private void EarthquakeEvent()
-    {
-
-        launcher.activate = false;
-
-    }
 
     //selection
 
