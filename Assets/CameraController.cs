@@ -11,6 +11,6 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(Vector3.right * Input.GetAxis("Mouse ScrollWheel")*scrollMultiplier);
+        transform.Rotate(Vector3.right * Input.GetAxis("Mouse ScrollWheel")*scrollMultiplier*Time.deltaTime);
     }
 }
