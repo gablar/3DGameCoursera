@@ -6,20 +6,25 @@ public class TreeController : MonoBehaviour
 {
      
     public bool raining;
-    public float speed;
-
-    public Vector3 direction;
     bool broken = false;
+    public float destroyTime;
+
+
+    public float speed;
+    public Vector3 direction;
+
 
     Rigidbody rgb;
     Animator anim;
 
+    //DELEGATES
     public delegate void TreeGrown();
     public static event TreeGrown OnTreeGrown;
 
     // Use this for initialization
     void Start()
     {
+        
         anim = GetComponent<Animator>();
         
         rgb = GetComponent<Rigidbody>();
@@ -48,6 +53,7 @@ public class TreeController : MonoBehaviour
             
             broken = true;
             Invoke("LaunchTree", 0.1f);
+            Destroy(gameObject, destroyTime);
         }
     }
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class CloudController : MonoBehaviour {
     public float delay;
@@ -9,6 +11,9 @@ public class CloudController : MonoBehaviour {
     Animator treeAnim;
     AudioSource thunderSound;
     bool isRedirected  = false;
+
+
+    //delegates
 
     public delegate void RainStarted();
     public static event RainStarted OnRainStarted;
@@ -68,6 +73,10 @@ public class CloudController : MonoBehaviour {
     void StartRain() {
         if (isRedirected)
         {
+            Analytics.CustomEvent("rainStarted", new Dictionary<string, object>
+                              {
+                                { "rainStarted", Time.realtimeSinceStartup }
+                              });
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             if (OnRainStarted != null)
             {

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class SawmillController : MonoBehaviour {
 
@@ -41,6 +43,12 @@ public class SawmillController : MonoBehaviour {
             mill.ActivateMill();
 
             t = 0;
+
+            //ANALYTICS
+            Analytics.CustomEvent("Sawmill", new Dictionary<string, object>
+                              {
+                                { "SawStarted", Time.realtimeSinceStartup }
+                              });
         }
 
 
