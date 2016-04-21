@@ -2840,7 +2840,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1374.23
+      value: 1374.242
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2848,23 +2848,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1354.65
+      value: 1354.299
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.04669366
+      value: -0.00044304747
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.04660659
+      value: -0.00044198747
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.70622605
+      value: 0.70776784
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7049059
+      value: 0.70644486
       objectReference: {fileID: 0}
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_RootOrder
@@ -2877,6 +2877,10 @@ Prefab:
     - target: {fileID: 405868, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 183442, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92c2dee9633103447882f102c12ef0eb, type: 2}
