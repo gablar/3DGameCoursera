@@ -36,7 +36,7 @@ public class SawmillController : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision other) {
+    void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Tree")) {
             Destroy(other.gameObject, 1);
             launcher.Activate();
