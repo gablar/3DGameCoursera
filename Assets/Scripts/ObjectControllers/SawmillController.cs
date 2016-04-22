@@ -49,19 +49,23 @@ public class SawmillController : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Tree"))
         {
-
-            Destroy(other.gameObject);
-            launcher.Activate();
-            mill.ActivateMill();
-            ActivateParticles();
-            Invoke("DeactivateParticles", 5);
-            t = 0;
-
-            //ANALYTICS
-            Analytics.CustomEvent("Sawmill", new Dictionary<string, object>
+            if (mill.resetBlade)
+            {
+                Destroy(other.gameObject);
+                launcher.Activate();
+                mill.ActivateMill();
+                ActivateParticles();
+                Invoke("DeactivateParticles", 5);
+                t = 0;
+                //ANALYTICS
+                Analytics.CustomEvent("Sawmill", new Dictionary<string, object>
                               {
                                 { "SawStarted", Time.realtimeSinceStartup }
                               });
+
+            }
+
+        
         }
 
 

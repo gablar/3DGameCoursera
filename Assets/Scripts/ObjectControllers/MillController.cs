@@ -6,7 +6,7 @@ public class MillController : MonoBehaviour {
 
     public float rotation= 25.0f;
     public float flyspeed = 50;
-    bool resetBlade = true;
+    public bool resetBlade = true;
     public float min;
     public float max;
     AudioSource sawSound;
@@ -76,7 +76,7 @@ public class MillController : MonoBehaviour {
 
 
     private void EarthquakeEvent() {
-        Debug.Log("earthquake registered");
+       
         if (resetBlade) {
             resetBlade = false;
             DeactivateMill();
