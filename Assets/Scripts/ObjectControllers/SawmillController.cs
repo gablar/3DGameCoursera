@@ -8,19 +8,29 @@ public class SawmillController : MonoBehaviour {
 
     // Use this for initialization
     public float treeTimer;
-    float t =0;
+    float t = 0;
     LauncherController launcher;
     MillController mill;
-    void Start () {
+    Transform leaves;
+    Transform wood;
+
+    void Start() {
         launcher = gameObject.transform.GetComponentInChildren<LauncherController>();
         mill = gameObject.transform.GetComponentInChildren<MillController>();
+
+
+        //particle system
+        leaves = gameObject.transform.GetChild(2);
+        wood = gameObject.transform.GetChild(3);
+        leaves.gameObject.SetActive(false);
+        wood.gameObject.SetActive(false);
 
         rend = GetComponent<Renderer>();
         origColor = rend.material.color;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         t += Time.deltaTime;
         if (t > treeTimer) {
             mill.DeactivateMill();
@@ -34,14 +44,17 @@ public class SawmillController : MonoBehaviour {
             Deselect();
             mill.Deselect();
         }
-	}
+    }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Tree")) {
-            Destroy(other.gameObject, 1);
+        if (other.gameObject.CompareTag("Tree"))
+        {
+
+            Destroy(other.gameObject);
             launcher.Activate();
             mill.ActivateMill();
-
+            ActivateParticles();
+            Invoke("DeactivateParticles", 5);
             t = 0;
 
             //ANALYTICS
@@ -52,6 +65,17 @@ public class SawmillController : MonoBehaviour {
         }
 
 
+    }
+
+    private void ActivateParticles()
+    {
+        wood.gameObject.SetActive(true);
+        leaves.gameObject.SetActive(true);
+    }
+
+    private void DeactivateParticles() {
+        wood.gameObject.SetActive(false);
+        leaves.gameObject.SetActive(false);
     }
 
     private void EarthquakeEvent()
