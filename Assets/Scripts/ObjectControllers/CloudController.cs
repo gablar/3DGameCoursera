@@ -58,7 +58,6 @@ public class CloudController : MonoBehaviour {
     {
         isRedirected = true;
         //Debug.Log("Steam Redirigido detectado");
-        cloudComplexStarted = true;
         Invoke("StartCloud",delay);
         Invoke("StartRain",delay+2);
     }
